@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nordic Online Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(180deg, #3b0ca8 0%, #c471ed 100%);
+    }
+    .logo-bounce {
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    .highlight-animate {
+      background: linear-gradient(to right, #ffb347, #ffcc33);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: pulseColor 3s ease-in-out infinite;
+    }
+    @keyframes pulseColor {
+      0% {
+        filter: brightness(100%);
+      }
+      50% {
+        filter: brightness(140%);
+      }
+      100% {
+        filter: brightness(100%);
+      }
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: white;
+      color: black;
+      padding: 2rem;
+      border-radius: 0.75rem;
+      max-width: 500px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body class="text-white font-sans">
+  <!-- Nav -->
+  <header class="flex justify-between items-center px-6 py-4 bg-purple-800 bg-opacity-70">
+    <div class="flex items-center space-x-3">
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/Polo_Bear_logo.png/200px-Polo_Bear_logo.png" alt="Polo Bear Logo" class="w-10 h-10 rounded-full logo-bounce" />
+      <h1 class="text-xl font-semibold">Nordic Online Studio</h1>
+    </div>
+    <nav class="space-x-6 hidden md:block">
+      <a href="#" onclick="openModal('about')" class="hover:text-orange-300 cursor-pointer">About Us</a>
+      <a href="#" onclick="openModal('services')" class="hover:text-orange-300 cursor-pointer">Services</a>
+      <a href="#" onclick="openModal('whatyouget')" class="hover:text-orange-300 cursor-pointer">What You Get</a>
+      <a href="#" onclick="openModal('contact')" class="hover:text-orange-300 cursor-pointer">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="text-center py-24">
+    <h2 class="text-4xl md:text-6xl font-extrabold mb-4">Nordic Online Studio</h2>
+    <p class="text-xl mb-8">We build your dream site — <span class="highlight-animate font-bold">for just 150 kr</span>.</p>
+    <a href="#" onclick="openModal('contact')" class="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-full text-white font-semibold">Get Started</a>
+  </section>
+
+  <!-- Floating F Badge -->
+  <div class="flex justify-center my-10">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/Polo_Bear_logo.png/200px-Polo_Bear_logo.png" alt="Polo Bear Logo" class="w-16 h-16 rounded-full border-4 border-purple-500 logo-bounce" />
+  </div>
+
+  <!-- What You Get Section -->
+  <section class="bg-white text-gray-900 rounded-t-3xl py-16 px-6">
+    <h3 class="text-3xl font-bold text-center mb-12">What You Get</h3>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
+      <div class="bg-white shadow-lg p-6 rounded-xl text-center">
+        <div class="text-4xl mb-4">💻</div>
+        <h4 class="font-semibold text-lg mb-2">Custom Website</h4>
+        <p class="text-sm">A beautifully designed website tailored to your brand.</p>
+      </div>
+      <div class="bg-white shadow-lg p-6 rounded-xl text-center">
+        <div class="text-4xl mb-4">🌐</div>
+        <h4 class="font-semibold text-lg mb-2">1-Year Domain</h4>
+        <p class="text-sm">Get a domain like yourbusiness.com for a year.</p>
+      </div>
+      <div class="bg-white shadow-lg p-6 rounded-xl text-center">
+        <div class="text-4xl mb-4">📱</div>
+        <h4 class="font-semibold text-lg mb-2">Mobile-Optimized Design</h4>
+        <p class="text-sm">Stunning and touch friendly on phones and tablets.</p>
+      </div>
+      <div class="bg-white shadow-lg p-6 rounded-xl text-center">
+        <div class="text-4xl mb-4">💳</div>
+        <h4 class="font-semibold text-lg mb-2">Only 150 kr</h4>
+        <p class="text-sm">An affordable one-time payment for everything you need.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Template -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content" id="modal-content">
+      <button onclick="closeModal()" class="absolute top-2 right-4 text-black">✖</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="text-center text-white mt-20 pb-10">
+    <p>© 2025 Nordic Online Studio. Powered by kindness.</p>
+  </footer>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const modalBody = document.getElementById('modal-body');
+
+    function openModal(section) {
+      let content = '';
+      if (section === 'about') {
+        content = '<h2 class="text-xl font-bold mb-2">About Us</h2><p>Nordic Online Studio is your one-stop digital partner helping startups, freelancers, and small businesses go live with powerful, affordable solutions. For just 150 kr, we design and build complete digital assets — no fluff, just results.</p>';
+      } else if (section === 'vision') {
+        content = '<h2 class="text-xl font-bold mb-2">Our Vision</h2><p>To empower individuals and businesses with beautifully crafted digital tools — websites, dashboards, and automation — without breaking the bank. We believe high-quality work should be accessible to all.</p>';
+      } else if (section === 'services') {
+        content = '<h2 class="text-xl font-bold mb-2">Our Services</h2><ul class="text-left list-disc list-inside">
+  <li>Custom Website Development (HTML, Tailwind, WordPress)</li>
+  <li>Cross-platform Mobile Apps</li>
+  <li>Interactive Dashboards (Web & Embedded)</li>
+  <li>Project Planning with MS Project or Primavera P6</li>
+  <li>VBA Excel Tools & Automation</li>
+  <li>Power BI Reports & Dashboards</li>
+</ul>';
+      } else if (section === 'whatyouget') {
+        content = '<h2 class="text-xl font-bold mb-2">What You Get</h2><p>A full service package: design, development, mobile optimization, analytics dashboard, domain setup, and direct project planning support — all for a one-time cost of 150 kr.</p>';
+      } else if (section === 'contact') {
+        content = '<h2 class="text-xl font-bold mb-2">Let\'s Connect</h2><p>Email us at <a href="mailto:contact@nordiconline.studio" class="text-blue-500">contact@nordiconline.studio</a> or use the contact form below.</p>';
+      }
+      modalBody.innerHTML = content;
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modalBody.innerHTML = '';
+    }
+  </script>
+</body>
+</html>
